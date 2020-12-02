@@ -7,7 +7,7 @@ def test(request, *args, **kwargs):
 
 def question(request, pk):
     question = get_object_or_404(Question, pk=pk)
-    answers = question.answer.all()
+    answers = question.answer_set.all()
     return render(request, 'question.html', {'question': question, 'answers': answers})
 
 def popular(request, page):
