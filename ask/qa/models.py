@@ -30,8 +30,8 @@ class QuestionManager(models.Manager):
                 page = paginator.page(paginator.num_pages)
             return {'questions': page, 'paginator': paginator}
 
-        def new(self,count=1):
-            return self.objects.all()[:count]
+        def new(self):
+            return self.objects.order_by('-pk')
         
         def popular(self):
             return self.objects.order_by('-rating')

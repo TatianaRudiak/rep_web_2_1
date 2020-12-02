@@ -2,6 +2,7 @@
 {% block title %}Cписок популярных вопросов{% endblock %}
 {% block header %}Cписок популярных вопросов{% endblock %}
 {% block content %}
+
     {% for question in questions %}
         <h3><a href="question/{{ p.number }}">{{ question }}</a></h3>
         <p>
