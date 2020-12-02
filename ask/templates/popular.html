@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Cписок популярных вопросов{% endblock %}
+{% block header %}Cписок популярных вопросов{% endblock %}
+{% block content %}
+    {% for question in questions %}
+        <h3><a href="question/{{ p.number }}">{{ question }}</a></h3>
+        <p>
+            Автор: {{ question.author.get_full_name }}, Дата публикации: {{ question.added_at|date:"d M Y" }}
+        </p>
+        {% if not forloop.last %}<hr>{% endif %}
+    {% empty %}
+        <p>Список вопросов пуст.</p>
+    {% endfor %}
+
+    <nav><ul class="pagination">
+        {% for p in questions.page_range %}
+            {% if p.number == page.number %}
+                <li class="active">
+            {% else %}
+                <li>
+            {% endif %}
+            <a href="{{ paginator.baseurl }}{{ p.number }}">{{ p.number }}</a>
+            </li>
+        {% endfor %}
+    </ul></nav>
+
+{% endblock %} 

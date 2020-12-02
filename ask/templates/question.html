@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Страница одного вопроса.{% endblock %}
+{% block header %}{{ question }}{% endblock %}
+{% block content %}
+
+    {% for answer in answers %}
+    <h3>
+        Автор: {{ answer.author.get_full_name }}, Дата публикации: {{ answer.added_at|date:"d M Y" }}
+    </h3>
+    <p>{{ answer.text|linebreaksbr }}</p>
+    {% if not forloop.last %}<hr>{% endif %}
+    {% empty %}
+        <p>Список ответов пуст.</p>
+    {% endfor %}
+
+{% endblock %} 
