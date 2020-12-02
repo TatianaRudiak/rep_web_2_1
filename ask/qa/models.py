@@ -48,7 +48,7 @@ class Question(models.Model):
     author = models.ForeignKey(
         User, null=True, on_delete=models.SET_NULL, related_name='question'
     )
-    likes = models.ManyToManyField(User, related_name='question_like_user')  
+    likes = models.ManyToManyField(User, blank = True, related_name='question_like_user')  
     
     class Meta:
         ordering = ['-added_at']
