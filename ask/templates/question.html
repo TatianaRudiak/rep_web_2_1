@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Страница одного вопроса.{% endblock %}
-{% block header %}{{ question }}{% endblock %}
+{% block header %}{{ question.title }}{% endblock %}
 {% block content %}
 
     {% for answer in answers %}
