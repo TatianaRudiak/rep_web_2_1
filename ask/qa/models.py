@@ -36,8 +36,8 @@ class Question(models.Model):
     objects = QuestionManager()
     title = models.CharField(max_length=250)
     text = models.TextField(blank = True, default='')
-    added_at = models.DateTimeField(blank = True, auto_now_add=True)
-    rating = models.IntegerField(default=0)
+    added_at = models.DateTimeField(blank = True, null = True, auto_now_add=True)
+    rating = models.IntegerField(default=0, null = True)
     author = models.ForeignKey(
         User, null=True, on_delete=models.SET_NULL, related_name='question'
     )
@@ -49,9 +49,9 @@ class Question(models.Model):
 
 class Answer(models.Model):
     text = models.TextField(blank = True, default='')
-    added_at = models.DateTimeField(blank = True, auto_now_add=True)
+    added_at = models.DateTimeField(blank = True, null = True, auto_now_add=True)
     question = models.ForeignKey(
-        Question, on_delete=models.CASCADE
+        Question, null = True, on_delete=models.CASCADE
     )
     author = models.ForeignKey(
         User, null=True, on_delete=models.SET_NULL
