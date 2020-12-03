@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse 
 from .models import Question, Answer
 
+
 def test(request, *args, **kwargs):
     return HttpResponse('OK')
 
@@ -11,9 +12,9 @@ def question(request, pk):
     return render(request, 'question.html', {'question': question, 'answers': answers})
 
 def popular(request, page):
-    qs = Question.objects.popular
-    return render(request, 'popular.html', Question.objects.paginate(qs,'popular'))
+    qs = Question.objects.order_by('-rating')
+    return render(request, 'popular.html', Question.objects.paginate(qs, page, 'popular'))
 
 def index(request, page):
-    qs = Question.objects.new
-    return render(request, 'index.html', Question.objects.paginate(qs,''))
+    qs = Question.objects.order_by('-pk')
+    return render(request, 'index.html', Question.objects.paginate(qs, page,''))

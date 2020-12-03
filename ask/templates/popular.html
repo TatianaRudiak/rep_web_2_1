@@ -4,7 +4,7 @@
 {% block content %}
 
     {% for question in questions %}
-        <h3><a href="question/{{ question.pk }}">{{ question.title }}</a></h3>
+        <h3><a href="../../question/{{ question.pk }}">{{ question.title }}</a></h3>
         <p>
             Автор: {{ question.author.get_full_name }}, Дата публикации: {{ question.added_at|date:"d M Y" }}
         </p>
