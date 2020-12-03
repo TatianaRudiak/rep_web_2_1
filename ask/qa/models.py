@@ -12,7 +12,7 @@ class QuestionManager(models.Manager):
         def paginate(self, qs, page, slug=''):
             limit = 10
             paginator = Paginator(qs, limit)
-            paginator.baseurl = f'{slug}/{page}'
+            paginator.baseurl = str(slug)+'/'+str(page)
             page = paginator.page(page)   
             #try:
             #    page = paginator.page(page)
