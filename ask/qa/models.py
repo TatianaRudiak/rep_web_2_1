@@ -12,7 +12,7 @@ class QuestionManager(models.Manager):
         def paginate(self, qs, page, slug=''):
             limit = 10
             paginator = Paginator(qs, limit)
-            paginator.baseurl = str(slug)+'/'+str(page)
+            paginator.baseurl = f'{slug}/{page}'
             page = paginator.page(page)   
             #try:
             #    page = paginator.page(page)
@@ -20,8 +20,8 @@ class QuestionManager(models.Manager):
             #    page = paginator.page(paginator.num_pages)
             return {'questions': page, 'paginator': paginator}
 
-        def get_url (self, slug, kwargs):
-            return reverse(slug,kwargs)
+        def get_url(self, slug, kwargs):
+            return reverse(slug, kwargs)
 
         def new(self):
             return self.order_by('-pk')

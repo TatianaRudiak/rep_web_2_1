@@ -1,23 +1,11 @@
 {% extends "base.html" %}
-{% block title %}Страница одного вопроса.{% endblock %}
-{% block header %}{{ question.title }}{% endblock %}
+{% block title %}Ввода нового вопроса.{% endblock %}
+{% block header %}Введите свой вопрос:{% endblock %}
 {% block content %}
-
-    {% for answer in answers %}
-    <h3>
-        Автор: {{ answer.author.get_full_name }}, Дата публикации: {{ answer.added_at|date:"d M Y" }}
-    </h3>
-    <p>{{ answer.text|linebreaksbr }}</p>
-    {% if not forloop.last %}<hr>{% endif %}
-    {% empty %}
-        <p>Список ответов пуст.</p>
-    {% endfor %}
 
     {% for e in form.non_field_errors %}
         <div class="alert alert-danger">{{ e }}</div>
     {% endfor %}
-
-    <h4>Введите свой ответ:</h4>
     <form class="form-horizontal" method="post">
         {% csrf_token %}
         <fieldset>
@@ -34,6 +22,5 @@
         Сохранить</button>
         </div>
     </form>
-
 
 {% endblock %} 
